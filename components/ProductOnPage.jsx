@@ -12,7 +12,7 @@ export const ProductOnPageRow = ({product: {title, price, image, description, sl
             <img src={urlFor(image[0])} alt={slug.current} />
             <p className='price' > STARTING FROM <em>$ {price} </em></p>
             <p className='desc' >{description}</p>
-            <Link href=''>
+            <Link href={`/products/${slug.current}`}>
                 <button className='btn'>BUY NOW</button>
             </Link>
         </div>
@@ -33,11 +33,11 @@ export const ProductOnPageWidth = ({product: {title, price, image, description, 
               <h5>{title}</h5>
               <p className='price' > STARTING FROM <em>$ {price} </em></p>
               <p className='desc' >{description}</p>
-              <Link href=''>
+              <Link href={`/products/${slug.current}`}>
                   <button className='btn'>BUY NOW</button>
               </Link>
             </div>
-            
+
           </div>
       </div>
     )

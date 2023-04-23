@@ -1,4 +1,3 @@
-
 import React from 'react'
 import {ProductOnPageRow, ProductOnPageWidth} from '../../components/ProductOnPage';
 
@@ -13,12 +12,11 @@ const products = ({products}) => {
                 <div className='products'>
                     {products?.map((product, i) => {
                         if( (i+1) % 3 !== 0){
-                            return <ProductOnPageRow product={product} />
+                            return <ProductOnPageRow key={product._id} product={product} />
                         }else {
-                            return <ProductOnPageWidth product={product} />
+                            return <ProductOnPageWidth key={product._id} product={product} />
                         }
-
-                    })
+                        })
                     }
                 </div>
             </div>

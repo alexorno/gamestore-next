@@ -1,6 +1,6 @@
 import React from 'react'
 import HeroBanner from '../components/HeroBanner'
-import Recomendations from '../components/Recomendations'
+import Recomendations from '../components/Recomendations/Recomendations'
 import HeroCategory from '../components/HeroCategory/HeroCategory'
 
 import {client} from '../lib/sanity'
