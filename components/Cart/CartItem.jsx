@@ -1,9 +1,12 @@
-import React from 'react'
-import { urlFor } from '../../lib/sanity'
+import React from 'react';
+import { urlFor } from '../../lib/sanity';
+import { useStateContext } from '../../context/StateContext';
 
 const CartItem = ({product}) => {
-    
-    const {image, title, description, price, quantity} = product
+
+    const {changeQtyInCart, onRemove} = useStateContext()
+
+    const {image, title, price, quantity} = product
 
     const numberRound = (num) => {
         return Math.round(((num) + Number.EPSILON) * 100 ) / 100
@@ -21,12 +24,11 @@ const CartItem = ({product}) => {
 
             <div className='cart-bottom'>
                 <div className="qty">
-                    <button>-</button>
+                    <button onClick={() => changeQtyInCart(product._id, 'dec')}>-</button>
                     <p>{quantity}</p>
-                    <button>+</button>
+                    <button onClick={() => changeQtyInCart(product._id, "inc")}>+</button>
                 </div>
-
-                <p>remove</p>
+                <button onClick={() => onRemove(product._id)}>remove</button>
             </div>
         </div>
         

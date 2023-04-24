@@ -2,23 +2,42 @@ import React, { useState, createContext, useContext } from 'react';
 import { client } from '../lib/sanity';
 import toast from 'react-hot-toast';
 
+
 const Context = createContext()
 
 export const StateContext = ({children}) => {
-
-    const [showCart, setShowCart] = useState(true)
+    const [showCart, setShowCart] = useState(false)
     const [cartItems, setCartItems] = useState([])
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [qty, setQty] = useState(1)
-    
-    const onAdd = (product, quantity) => {
-      const productIsInCart = cartItems.findIndex((item) => item._id === product._id )
 
-      if(productIsInCart > -1){
-        // creating shallow copy to update quantity of product with specific id which was found by productIsInCart()
+
+    const changeQtyInCart = (id, direction) => {
+      const productNum = cartItems.findIndex((item) => item._id === id);
+      const array = [...cartItems]
+
+      if(direction === "inc" ){
+        array[productNum].quantity = array[productNum].quantity + 1
+        setCartItems(array)
+      }
+      else if(direction === "dec"){
+        if(array[productNum].quantity > 1){
+          array[productNum].quantity = array[productNum].quantity - 1
+          setCartItems(array)
+        }else{
+          toast.error(`If you want to remove, please, use "remove"`)
+        }
+      }
+    }
+
+    const onAdd = (product, quantity) => {
+      const productNum = cartItems.findIndex((item) => item._id === product._id )
+      
+      if(productNum > -1){
+        // creating shallow copy to update quantity of product with specific id which was found by productNum()
         const array = [...cartItems];
-        array[productIsInCart].quantity = array[productIsInCart].quantity + quantity
+        array[productNum].quantity = array[productNum].quantity + quantity
         // updating cartItems with updated quantity
         setCartItems(array)
       }else{
@@ -26,12 +45,19 @@ export const StateContext = ({children}) => {
         setCartItems([...cartItems, product])
       }
 
-
       setTotalPrice((prevTotalPrice) => +((prevTotalPrice + (quantity * product.price)).toFixed(2)) )
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity)
-      setQty(1)
       toast.success(`${quantity} ${product.title} added to cart 😌`)
+      setQty(1)
+    }
 
+    const onRemove = (id) => {
+      const productNum = cartItems.findIndex((item) => item._id === id);
+      const array = [...cartItems];
+      // we are moving element which we want to delete to the end of array and then reducing array length (one of the efficient delete methods)
+      array[productNum] = array[array.length - 1]
+      array.length = array.length - 1
+      setCartItems(array)
     }
 
     const incQty = () => {
@@ -50,7 +76,7 @@ export const StateContext = ({children}) => {
     }
 
   return (
-    <Context.Provider value={{ qty, setQty, incQty, decQty, onAdd, cartItems, showCart, setShowCart, totalPrice, totalQuantities}}>
+    <Context.Provider value={{ qty, setQty, incQty, decQty, onAdd, cartItems, showCart, setShowCart, totalPrice, totalQuantities, changeQtyInCart, onRemove}}>
         {children}
     </Context.Provider>     
   )
@@ -59,9 +85,6 @@ export const StateContext = ({children}) => {
 export const useStateContext = () => useContext(Context)
 
 export const getServerSideProps = async () =>{
-  // const query =  `*[_type == "Products"]`;
-  // const products = await client.fetch(query);
-  
   const productsQuery =  `*[_type == "product"]`;
   const products = await client.fetch(productsQuery);
 
