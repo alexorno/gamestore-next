@@ -1,11 +1,36 @@
 import React from 'react';
 import { useStateContext } from '../../context/StateContext';
 import CartItem from './CartItem';
+import { loadStripe } from '@stripe/stripe-js'
+import Stripe from 'stripe';
+
+
+
 
 const Cart = () => {
+  
+  const {cartItems, useCartItems, setShowCart, totalPrice} = useStateContext()
+  
+  const handleCheckout = async () => {
+      const stripePromise = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
 
-    const {cartItems, useCartItems, setShowCart, totalPrice} = useStateContext()
+      const response = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({cartItems})
+      });
 
+      if(response.code === 500){
+        return
+      }else{}
+
+      const data = await response.json()
+
+
+      // toast.loading('loaddddd')
+
+      stripePromise.redirectToCheckout({sessionId: data.id})
+  }
 
   return (
 
@@ -23,7 +48,7 @@ const Cart = () => {
         
       <div className='cart-total'>
         <p>Total: ${totalPrice}</p>
-        <a href=''> Go to checkout </a>
+        <a onClick={handleCheckout}> Go to checkout </a>
       </div>
     </div>
 
