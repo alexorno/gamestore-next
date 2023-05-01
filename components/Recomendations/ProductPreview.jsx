@@ -6,7 +6,7 @@ const ProductPreview = ({product: {title, description, price, slug, image} , rev
 
   return (
 
-    <div className={`product-recom ${reverse ? 'reverse' : ''}`}>
+        <div className={`product-recom ${reverse ? 'reverse' : ''}`}>
         <div className='recom-left'>
             <h5>{title}</h5>
             <p className='recom-price'> STARTING FROM <em>$ {price}</em></p>

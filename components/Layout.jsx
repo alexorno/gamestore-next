@@ -1,9 +1,10 @@
 import React from 'react'
 import Head from 'next/head';
 // import Footer from './Footer';
-import Navbar from './Navbar';
-import { useStateContext } from '../context/StateContext';
 import Cart from './Cart/Cart';
+import {Navbar} from './Navbar/Navbar';
+import { useStateContext } from '../context/StateContext';
+
 
 
 const Layout = ({children}) => {
@@ -30,5 +31,6 @@ const Layout = ({children}) => {
     </div>
   )
 }
+
 
 export default Layout

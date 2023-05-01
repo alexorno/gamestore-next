@@ -2,6 +2,13 @@
 import React, {useState} from 'react'
 import  {useStateContext}  from '../../context/StateContext';
 import { client, urlFor } from '../../lib/sanity';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay, onAutoplayTimeLeft, progressCircle, progressContent,Scrollbar, A11y } from 'swiper';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+
 
 const productPage = ({product}) => {
 
@@ -13,8 +20,39 @@ const productPage = ({product}) => {
     <div className='product-page'>
       <div className='main-container'>
         <div className='main-product'>
-          <div className='swiper'>
-            <img src={urlFor(image[0])} alt='' />
+          <div className='swiper-outer-container'>
+            {/* <img src={urlFor(image[0])} alt='' /> */}
+            <Swiper
+                spaceBetween={30}
+                centeredSlides={true}
+                autoplay={{
+                  delay: 2500,
+                  disableOnInteraction: true,
+                }}
+                pagination={{
+                  clickable: true,
+                }}
+                navigation={true}
+                modules={[Autoplay, Pagination, Navigation]}
+                onAutoplayTimeLeft={onAutoplayTimeLeft}
+                className="mySwiper"
+            >
+        {image.map((img) => { 
+          return (<SwiperSlide>
+          <img src={urlFor(img)} alt='' key={img._key}/>
+        </SwiperSlide>
+        )}
+        )}
+        
+       
+        
+        <div className="autoplay-progress" slot="container-end">
+          <svg viewBox="0 0 48 48" ref={progressCircle}>
+            <circle cx="24" cy="24" r="20"></circle>
+          </svg>
+          <span ref={progressContent}></span>
+        </div>
+      </Swiper>
           </div>
           <div className='data'>
             <h1>{title}</h1>

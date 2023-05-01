@@ -1,5 +1,4 @@
 import React, { useState, createContext, useContext } from 'react';
-import { client } from '../lib/sanity';
 import toast from 'react-hot-toast';
 
 
@@ -11,6 +10,8 @@ export const StateContext = ({children}) => {
     const [totalQuantities, setTotalQuantities] = useState(0)
     const [totalPrice, setTotalPrice] = useState(0)
     const [qty, setQty] = useState(1)
+
+    const [products, setProducts] = useState([])
 
 
     const changeQtyInCart = (id, direction) => {
@@ -71,24 +72,14 @@ export const StateContext = ({children}) => {
         }else{
           return 1
         }
-        
       })
     }
 
   return (
-    <Context.Provider value={{ qty, setQty, incQty, decQty, onAdd, cartItems, showCart, setShowCart, totalPrice, totalQuantities, changeQtyInCart, onRemove}}>
+    <Context.Provider value={{ setProducts, products, qty, setQty, incQty, decQty, onAdd, cartItems, showCart, setShowCart, totalPrice, totalQuantities, changeQtyInCart, onRemove}}>
         {children}
     </Context.Provider>     
   )
 }
 
 export const useStateContext = () => useContext(Context)
-
-export const getServerSideProps = async () =>{
-  const productsQuery =  `*[_type == "product"]`;
-  const products = await client.fetch(productsQuery);
-
-  return{
-    props: {products}
-  }
-};

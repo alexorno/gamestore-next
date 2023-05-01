@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @font-face {
   font-family: 'Doppio One';
   src: url('../public/DoppioOne-Regular.ttf');
@@ -69,7 +70,7 @@ padding: 0 10px;
   display: flex;
   width: 95%;
   margin: auto;
-  height: ;
+  /* height: ; */
   overflow: hidden;
 }
 
@@ -183,9 +184,61 @@ border-left: gray solid 1px;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
+  z-index: 2;
+  overflow: visible;
+}
+.search-container{
+  min-width: 200px;
+  max-width: 500px;
+  width: 35%;
+  display: flex;
+  flex-direction: row;
+  overflow: visible;
+}
+
+.search{
+  display: flex;
+  width: 80%;
+  border: 2px solid #0897AB;
+  border-radius: 23px;
+  overflow: visible;
+}
+.search-icon{
+  display: flex;
+  width: 15%;
+  padding: 0 2.5%;
+  margin: auto;
+}
+.search .search-space{
+  width: 90%;
+  color:#ffffff9c;
+  background:none;
+}
+
+.search-result-container{
+  position: relative;
+  width: 100%;
+  overflow: visible;
+
+}
+
+.search-result{
+
+  top: 104%;
+  left: 0px;
+  background-color: #0898ab84;
+  backdrop-filter: blur(8px);
+border-radius: 0px 0px 10px 10px;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: auto;
+  font-size: 1rem;
 }
 
 .cart-icon{
+  margin: auto;
   height: auto;
 }
 
@@ -463,23 +516,45 @@ width: 45%;
 
 .main-product{ 
   display: flex;
-  width: 90%;
+width: 95%;
   margin: auto;
   justify-content: space-between;
 }
+/*SWIPER*/
+.main-product .swiper-outer-container{
+  display: block;
+  position: relative;
+  width: 50%;
+  aspect-ratio: 16/9;
+  overflow: visible;
 
-.main-product .swiper{
-  width: 45%;
-  display: flex;
 }
-
-.main-product .swiper img{
-  background-color: #343434;
+.mySwiper{
+ height: 100%;
+}
+.swiper-wrapper{
+  overflow: visible;
+ }
+.swiper-pagination-bullet{
+opacity: 0.5!important;
+background: #0897AB!important;
+}
+.swiper-pagination-bullet-active{
+  background-color: #0897AB!important;
+  opacity: 1!important;
+}
+.swiper-slide {
+display: flex!important;
+}
+.swiper-slide img{
+  height: 100%;
   margin: auto;
+  object-fit: contain;
 }
-
+/*  */
 .main-product .data{
-  width: 50%
+  margin-left: 20px;
+  width: 45%
 }
 .main-product h1{
   font-size: 2rem;
