@@ -19,7 +19,6 @@ const Search = () => {
 
     useEffect(() => {
       if(searchQuote.length > 0){
-        // console.log(products)
         setSearchQuote(searchQuote.toLowerCase())
 
         const searched = products.filter((item) => {
@@ -41,13 +40,13 @@ const Search = () => {
 
         <div className='search-result-container'>
             <input className='search-space' onFocus={() => setShowSearch(true)}  onBlur={() => setShowSearch(false)} placeholder='Search...' onChange={e => setSearchQuote(e.target.value)}/>
-            <div className='search-result' ref={searchresult}   >
-                { //check if input in Focus to show result and check that results are existing
-                searchResult.length != 0 && showSearch ? searchResult.map((item) => 
-                <CartItem product={item} key={item._id}/>) 
-                : showSearch && <p className='p-2'>No result, can you try again?</p>
-                }
-            </div>
+                <div className='search-result' ref={searchresult}   >
+                    { //check if input in Focus to show result and check that results are existing
+                    searchResult.length != 0 && showSearch ? searchResult.map((item) => 
+                    <CartItem product={item} key={item._id}/>) 
+                    : showSearch && <p className='p-2'>No result, can you try again?</p>
+                    }
+                </div>
         </div>
     </div>
   )

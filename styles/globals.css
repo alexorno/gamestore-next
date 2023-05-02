@@ -441,6 +441,44 @@ width: 45%;
   row-gap: 50px;
   padding: 3% 7%;
 }
+.products-page .filters{
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  width: 95%;
+}
+
+.filters .brands{
+  display: flex;
+  flex-direction: row;
+  column-gap: 20px;
+  height: 100px;
+  padding: 4px;
+/* overflow-x:hidden ;
+overflow-y: scroll; */
+}
+.filters .brand{
+  height: 100%;
+  background-color: rgb(129, 129, 129);
+  position: relative;
+  display: flex;
+}
+.brand img{
+  margin: auto 10px;
+  height: 80%;
+  object-fit: contain;
+}
+.brand input{
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+.brand.checked{
+  outline: 3px solid #0897AB;
+}
 .product-page-preview{
   display: flex;
   margin:auto;

@@ -11,7 +11,7 @@ import { useStateContext } from '../context/StateContext'
 const index = ({recomData, categoryData, products}) => {
 
  const {setProducts} = useStateContext()
-setProducts(products)
+ setProducts(products)
 
   return (
     <>

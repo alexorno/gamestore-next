@@ -30,6 +30,15 @@ export default {
         ]
       },
       {
+        title: 'Brand',
+        name: 'brandChoose',
+        type: 'reference',
+        to: [
+          {type: 'brands'},
+          // add a single plan only
+        ]
+      },
+      {
         name: 'price',
         type: 'number',
         title: 'Price'
