@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from 'react';
+import React, { useState, createContext, useContext, useEffect } from 'react';
 import toast from 'react-hot-toast';
 
 
@@ -13,6 +13,13 @@ export const StateContext = ({children}) => {
 
     const [products, setProducts] = useState([])
 
+    useEffect(() => {
+      if(showCart){
+      document.querySelector("body").classList.add("no-scroll")
+      }else{
+        document.querySelector("body").classList.remove("no-scroll")
+      }}, [showCart])
+    
 
     const changeQtyInCart = (id, direction) => {
       const productNum = cartItems.findIndex((item) => item._id === id);

@@ -13,7 +13,7 @@ const products = ({products, brands}) => {
             return setFilteredProducts(products)
         }
         const checkedBrandsId = new Set()
-        
+
         brands.map((brand, index) => {
             if(brandChecked[index] === true){
                 checkedBrandsId.add(brand._id)
@@ -33,10 +33,7 @@ const products = ({products, brands}) => {
         const arr = [...brandChecked]
         arr[index] = !arr[index]
         setBrandChecked(arr)
-
-
-
-
+        
         filterBrands(arr)
     }
 
@@ -70,13 +67,16 @@ const products = ({products, brands}) => {
 
                 <div className='products'>
                     {/* map throught array with products(and if every third item use horizontal component) and if there are no products return string */}
-                    {filteredProducts.length > 0 ? (filteredProducts.map((product, i) => {
-                        if( (i+1) % 3 !== 0){
-                            return <ProductOnPageRow key={product._id} product={product} />
-                        }else {
-                            return <ProductOnPageWidth key={product._id} product={product} />
-                        }
-                        })) : <p className='m-auto'>`Sorry, but we don't have such items`</p>
+                    {filteredProducts.length > 0 ? (
+                        filteredProducts.map((product, i) => {
+                            if( (i+1) % 3 !== 0){
+                                return <ProductOnPageRow key={product._id} product={product} />
+                            }else{
+                                return <ProductOnPageWidth key={product._id} product={product} />
+                            }
+                        })) 
+                        : 
+                        (<p className='m-auto'>Sorry, but we don't have such items</p>)
                     }
                 </div>
             </div>

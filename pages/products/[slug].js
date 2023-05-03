@@ -21,7 +21,6 @@ const productPage = ({product}) => {
       <div className='main-container'>
         <div className='main-product'>
           <div className='swiper-outer-container'>
-            {/* <img src={urlFor(image[0])} alt='' /> */}
             <Swiper
                 spaceBetween={30}
                 centeredSlides={true}
@@ -37,22 +36,19 @@ const productPage = ({product}) => {
                 onAutoplayTimeLeft={onAutoplayTimeLeft}
                 className="mySwiper"
             >
-        {image.map((img) => { 
-          return (<SwiperSlide>
-          <img src={urlFor(img)} alt='' key={img._key}/>
-        </SwiperSlide>
-        )}
-        )}
-        
-       
-        
-        <div className="autoplay-progress" slot="container-end">
-          <svg viewBox="0 0 48 48" ref={progressCircle}>
-            <circle cx="24" cy="24" r="20"></circle>
-          </svg>
-          <span ref={progressContent}></span>
-        </div>
-      </Swiper>
+              {image.map((img) => { 
+                return (<SwiperSlide key={img._key}>
+                <img src={urlFor(img)} alt='' />
+              </SwiperSlide>
+              )}
+              )}
+            <div className="autoplay-progress" slot="container-end">
+              <svg viewBox="0 0 48 48" ref={progressCircle}>
+                <circle cx="24" cy="24" r="20"></circle>
+              </svg>
+              <span ref={progressContent}></span>
+            </div>
+          </Swiper>
           </div>
           <div className='data'>
             <h1>{title}</h1>
