@@ -1,7 +1,15 @@
+function randomSymbols(size) {
+  return crypto.randomUUID(4).slice(0,size)
+   
+}
+
 export default {
     name: 'product',
     type: 'document',
-      title: 'Products',
+    title: 'Products',
+    initialValue: () => ({
+      slug: { _type: "slug", current: randomSymbols(12)},
+    }),
     fields: [
       {
         name: 'title',
@@ -48,8 +56,7 @@ export default {
         type: 'slug',
         title: 'Slug',
         options: {
-            source: 'title',
-            maxLength: 15,
+            source: () => randomSymbols(12)
         }
       },
       

@@ -1,7 +1,8 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {ProductOnPageRow, ProductOnPageWidth} from '../../components/ProductOnPage';
-
+import Search from '../../components/Search';
 import { client, urlFor } from '../../lib/sanity';
+
 
 const products = ({products, brands}) => {
     const [brandChecked, setBrandChecked] = useState(new Array(brands.length).fill(false)) 
@@ -42,6 +43,9 @@ const products = ({products, brands}) => {
   return (
         <div className='products-page'>
             <div className='main-container'>
+                    
+                    <Search products={products}/>
+                
                 <div className='filters'>
 
                     <div className='brands'>

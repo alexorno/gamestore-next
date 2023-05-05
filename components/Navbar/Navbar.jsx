@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link';
 import { ShoppingCartIcon } from '@heroicons/react/24/solid'
 import { useStateContext } from '../../context/StateContext';
-import Search from './Search';
+// import Search from './Search';
 
 import { productsArr } from '../../pages';
 
@@ -23,13 +23,10 @@ export const Navbar = () => {
         </Link>
       </p>
 
-      <div className='search-container'>
-        <Search />
         <button type='button' className='cart-icon flex items-center' onClick={() => setShowCart(true)} >
           <ShoppingCartIcon className='h-7 text-slate-100'/>
           <span className='cart-item-qty text-slate-100'>{totalQuantities}</span>
         </button>
-      </div>
 
 
     </nav>
