@@ -10,7 +10,7 @@ const HeroBanner = () => {
               <p>
               We make every effort to create the best opportunity to make the right and informed choice. Сontinues in stores, where our priority is to give visitors the opportunity to personally evaluate the qualities of the products of interest and, accordingly, to make a purchase decision based not on the inscriptions on the packaging, but on personal experience.
               </p>
-              <Link href='/products/products' >
+              <Link href='/products' >
                 <button className='btnp'>
                     GO TO SHOP
                 </button>

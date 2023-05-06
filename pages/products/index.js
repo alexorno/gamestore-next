@@ -1,6 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react'
 import {ProductOnPageRow, ProductOnPageWidth} from '../../components/ProductOnPage';
-import Search from '../../components/Search';
+import Search from '../../components/Search/Search';
 import { client, urlFor } from '../../lib/sanity';
 
 

@@ -8,6 +8,10 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import {ArrowUturnLeftIcon} from '@heroicons/react/24/outline';
+import Router from 'next/router';
+
+
 
 
 const productPage = ({product}) => {
@@ -19,6 +23,10 @@ const productPage = ({product}) => {
   return (
     <div className='product-page'>
       <div className='main-container'>
+        <button className='btn-back flex justify-between' onClick={() => Router.back()}>
+          <ArrowUturnLeftIcon className="h-4 w-4 my-auto" />
+          <p >Back</p>
+          </button>
         <div className='main-product'>
           <div className='swiper-outer-container'>
             <Swiper
