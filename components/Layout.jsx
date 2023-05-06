@@ -1,6 +1,6 @@
 import React from 'react'
 import Head from 'next/head';
-// import Footer from './Footer';
+import Footer from './Footer';
 import Cart from './Cart/Cart';
 import {Navbar} from './Navbar/Navbar';
 import { useStateContext } from '../context/StateContext';
@@ -24,9 +24,8 @@ const Layout = ({children}) => {
           { showCart && <Cart /> }
         </main>
 
-        {/* <footer>
-          <Footer />
-        </footer> */}
+        <Footer />
+
 
     </div>
   )
