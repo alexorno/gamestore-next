@@ -3,9 +3,7 @@ import { urlFor } from '../../lib/sanity';
 import { useStateContext } from '../../context/StateContext';
 
 const CartItem = ({product}) => {
-
     const {changeQtyInCart, onRemove} = useStateContext()
-
     const {image, title, price, quantity} = product
 
     const numberRound = (num) => {

@@ -32,14 +32,13 @@ const Cart = () => {
       closeCart()
     }
   }
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => {
         document.removeEventListener('click', handleClickOutside, true);
     };
   }, []);
-
-
    
   const handleCheckout = async () => {
       const stripePromise = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
@@ -52,13 +51,10 @@ const Cart = () => {
 
       if(response.code === 500){
         return
-      }else{}
-
+      }
+      
       const data = await response.json()
-
-
       toast.loading('Loading...')
-
       stripePromise.redirectToCheckout({sessionId: data.id})
   }
 

@@ -8,11 +8,10 @@ import { useStateContext } from '../context/StateContext';
 
 
 const Layout = ({children}) => {
-
   const {showCart} = useStateContext()
 
   return (
-    <div>
+    <>
         <Head>
           <title>Game Store Next step</title>
         </Head>
@@ -25,9 +24,7 @@ const Layout = ({children}) => {
         </main>
 
         <Footer />
-
-
-    </div>
+    </>
   )
 }
 

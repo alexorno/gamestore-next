@@ -1,4 +1,5 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, {useState} from 'react'
+import Link from 'next/link';
 import {ProductOnPageRow, ProductOnPageWidth} from '../../components/ProductOnPage';
 import Search from '../../components/Search/Search';
 import { client, urlFor } from '../../lib/sanity';
@@ -8,7 +9,6 @@ const products = ({products, brands}) => {
     const [brandChecked, setBrandChecked] = useState(new Array(brands.length).fill(false)) 
     const [filteredProducts, setFilteredProducts] = useState(products)
 
-    
     const filterBrands = (brandChecked) => {
         if(!brandChecked.includes(true)){
             return setFilteredProducts(products)
@@ -38,7 +38,6 @@ const products = ({products, brands}) => {
         filterBrands(arr)
     }
 
-    
 
   return (
         <div className='products-page'>
@@ -80,7 +79,12 @@ const products = ({products, brands}) => {
                             }
                         })) 
                         : 
-                        (<p className='m-auto'>Sorry, but we don't have such items</p>)
+                        (<div className='m-auto '>
+                            <p>Sorry, but we don't have such items</p>
+                            <Link href='/' className='flex justify-center' >
+                                <button className='btn'>Return to homepage</button>
+                            </Link>
+                        </div>)
                     }
                 </div>
             </div>
@@ -90,8 +94,8 @@ const products = ({products, brands}) => {
 
 
 export const getServerSideProps = async () =>{
-    const query =  `*[_type == "brands"]`;
-    const brands = await client.fetch(query);
+    const brandsQuery =  `*[_type == "brands"]`;
+    const brands = await client.fetch(brandsQuery);
     
     const productsQuery =  `*[_type == "product"]`;
     const products = await client.fetch(productsQuery);

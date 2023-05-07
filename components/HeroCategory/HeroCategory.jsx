@@ -2,6 +2,7 @@
  import Category from './Category'
  
  const HeroCategory = ({data}) => {
+  
    return (
      <div className='hero-category-container'>
         <div className='main-container'>
@@ -11,12 +12,6 @@
                 {data.map((block, ind) => 
                     <Category data={data[ind]} key={block._id}/>
                 )}
-
-                {/* <Category data={data}/>
-                <Category data={data}/>
-                <Category data={data}/>
-                <Category data={data}/> */}
-
             </div>
         </div>
      </div>

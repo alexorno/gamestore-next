@@ -878,8 +878,16 @@ background-color: #505050;
 }
 .footer-bottom > div{
   display: flex;
+  align-items: center;
+  text-align: center;
 }
-
+.footer-bottom > p{
+  margin: auto 0;
+}
+.footer-bottom svg{
+  filter: invert(1);
+  margin: auto;
+}
 
 
 @media only screen and (max-width: 1100px) {

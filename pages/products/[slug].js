@@ -15,9 +15,7 @@ import Router from 'next/router';
 
 
 const productPage = ({product}) => {
-
   const {price, image, description, title} = product[0];
-
   const { qty, incQty, decQty, onAdd } = useStateContext()
 
   return (

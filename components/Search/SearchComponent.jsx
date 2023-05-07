@@ -3,7 +3,6 @@ import React from 'react'
 import { urlFor } from '../../lib/sanity'
 
 const SearchComponent = ({product}) => {
-
     const {image, title, price, slug} = product
 
     return(

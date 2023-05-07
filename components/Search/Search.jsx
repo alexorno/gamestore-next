@@ -7,15 +7,12 @@ import SearchComponent from './SearchComponent';
 
 
 const Search = ({products}) => {
-    
     const [searchedProducts, setSearchedProducts] = useState([])
     const [searchQuote, setSearchQuote] = useState('')
     const [searchResult, setSearchResult] = useState([])
     const [showSearch, setShowSearch] = useState(false)
     const [resultLoad, setResultLoad] = useState(false)
     const searchresult = useRef(null)
-
-    
 
     const searchToggle = () => {
       // depending if 
@@ -32,10 +29,6 @@ const Search = ({products}) => {
         window.addEventListener('click', addListen)
       }
     }
-
-      
-
-
 
     useEffect(() => {
       setResultLoad(true)
@@ -55,12 +48,9 @@ const Search = ({products}) => {
         setResultLoad(false)
       }, 600);
 
-      // setResultLoad(false)
       return () => clearTimeout(interval)
-
     }, [searchQuote])
 
-    // onFocus={() => setShowSearch(true)} onBlur={() => unBlurSearch()} 
   return (
     <div className='search' onClick={() => searchToggle()}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 search-icon">
