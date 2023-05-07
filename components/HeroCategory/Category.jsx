@@ -20,9 +20,7 @@ const Category = ({data}) => {
             </div>
 
             <div className='category-btn' onClick={() => linkOnTopPage()}>
-                <Link href=''> 
                     <button className='btnp'>GO TO CATEGORY</button>
-                </Link>
             </div>
             
             <div className='category-bg'> 

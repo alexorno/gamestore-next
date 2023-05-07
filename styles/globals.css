@@ -2,14 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @font-face {
   font-family: 'Doppio One';
   src: url('../public/DoppioOne-Regular.ttf');
   font-weight: 400;
   font-style: normal;
-  }
-  html, body{
+}
+
+html, body{
     height: 100%;
   }
 
@@ -33,10 +33,10 @@ body{
  background-color: rgb(32, 24, 75);
 }
 
-/* ::-webkit-scrollbar {
-  height: 0px;
-  width: 0px;
-} */
+::-webkit-scrollbar:not(body) {
+  width: 0;
+  height: 0;
+}
 
 a{
   color: inherit;
@@ -398,6 +398,7 @@ width: 45%;
 }
 
 .category-bg p{
+  overflow: hidden;
   z-index: -1;
   color: #2D2D39;
   font-weight: 800;
@@ -406,6 +407,7 @@ width: 45%;
 }
 
 .category-bg img{
+  overflow: hidden;
   position: absolute;
   right: -30%;
   object-fit: cover;
@@ -549,17 +551,23 @@ justify-content: space-around;
   column-gap: 20px;
   height: 100px;
   padding: 4px;
-overflow-y:hidden ;
-overflow-x:scroll;
+overflow: scroll;
+-ms-overflow-style: none; 
+  scrollbar-width: none;
 }
+
 .filters .brand{
   height: 100%;
   background-color: rgb(129, 129, 129);
+  overflow: hidden;
   position: relative;
   display: flex;
   width: 20%;
+  min-width: 150px;
   transition: transform 0.2s ease-in;
+  
 }
+
 .filters .brand:active{
   background-color: rgb(95, 95, 95);
 }
@@ -568,9 +576,11 @@ overflow-x:scroll;
 }
 
 .brand img{
-  margin: auto 10px;
+  margin: 10px auto;
+  padding: 0 10px;
   height: 80%;
   object-fit: contain;
+  overflow: hidden;
 }
 
 
