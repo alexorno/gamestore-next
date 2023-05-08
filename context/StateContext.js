@@ -21,18 +21,22 @@ export const StateContext = ({children}) => {
       }}, [showCart])
     
 
-    const changeQtyInCart = (id, direction) => {
-      const productNum = cartItems.findIndex((item) => item._id === id);
+    const changeQtyInCart = (product, direction) => {
+      const productNum = cartItems.findIndex((item) => item._id === product._id);
       const array = [...cartItems]
 
       if(direction === "inc" ){
         array[productNum].quantity = array[productNum].quantity + 1
+        setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + 1)
+        setTotalPrice((prevTotalPrice) => prevTotalPrice + product.price)
         setCartItems(array)
       }
       else if(direction === "dec"){
         if(array[productNum].quantity > 1){
           array[productNum].quantity = array[productNum].quantity - 1
           setCartItems(array)
+          setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - 1)
+          setTotalPrice((prevTotalPrice) => prevTotalPrice - product.price)
         }else{
           toast.error(`If you want to remove, please, use "remove"`)
         }
@@ -53,20 +57,23 @@ export const StateContext = ({children}) => {
         setCartItems([...cartItems, product])
       }
 
-      setTotalPrice((prevTotalPrice) => +((prevTotalPrice + (quantity * product.price)).toFixed(2)) )
+      setTotalPrice((prevTotalPrice) => prevTotalPrice + quantity * product.price)
       setTotalQuantities((prevTotalQuantities) => prevTotalQuantities + quantity)
       toast.success(`${quantity} ${product.title} added to cart 😌`)
       setQty(1)
     }
 
-    const onRemove = (id) => {
-      const productNum = cartItems.findIndex((item) => item._id === id);
+    const onRemove = (product) => {
+      const productNum = cartItems.findIndex((item) => item._id === product._id);
       const array = [...cartItems];
       // we are moving element which we want to delete to the end of array and then reducing array length (one of the efficient delete methods)
       array[productNum] = array[array.length - 1]
       array.length = array.length - 1
+      setTotalQuantities((prevTotalQuantities) => prevTotalQuantities - product.quantity)
+      setTotalPrice((prevTotalPrice) => prevTotalPrice - product.price*product.quantity)
       setCartItems(array)
     }
+
 
     const incQty = () => {
       setQty(prevQty => (prevQty + 1))

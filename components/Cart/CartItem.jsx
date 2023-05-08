@@ -22,11 +22,11 @@ const CartItem = ({product}) => {
 
             <div className='cart-bottom'>
                 <div className="qty">
-                    <button onClick={() => changeQtyInCart(product._id, 'dec')}>-</button>
+                    <button onClick={() => changeQtyInCart(product, 'dec')}>-</button>
                     <p>{quantity}</p>
-                    <button onClick={() => changeQtyInCart(product._id, "inc")}>+</button>
+                    <button onClick={() => changeQtyInCart(product, "inc")}>+</button>
                 </div>
-                <button onClick={() => onRemove(product._id)}>remove</button>
+                <button onClick={() => onRemove(product)}>remove</button>
             </div>
         </div>
         

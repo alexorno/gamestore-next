@@ -3,15 +3,11 @@ import { useStateContext } from '../../context/StateContext';
 import CartItem from './CartItem';
 import { loadStripe } from '@stripe/stripe-js'
 import {toast} from 'react-hot-toast'
-import Stripe from 'stripe';
-
-
 
 
 const Cart = () => {
   const cartContainer = useRef()
   const {cartItems, useCartItems, setShowCart, totalPrice} = useStateContext()
-  
  useEffect(() => {
     cartContainer.current.classList.add('animate')
    setTimeout(() => {
@@ -19,7 +15,7 @@ const Cart = () => {
    }, 20);
  }, [setShowCart])
 
- const closeCart = () =>{
+ const closeCart = () => {
   cartContainer.current.classList.add('animate')
   setTimeout(() => {
     setShowCart(false)
@@ -42,7 +38,6 @@ const Cart = () => {
    
   const handleCheckout = async () => {
       const stripePromise = await loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY)
-
       const response = await fetch('/api/checkout', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -67,17 +62,18 @@ const Cart = () => {
         </svg>
       </button>
 
-      {cartItems.map((product) => 
+      {cartItems?.map((product) => 
         <CartItem product={product} key={product._id}/>
         )
       }
         
       <div className='cart-total'>
-        <p>Total: ${totalPrice}</p>
+        {/* ADDED KEY, because of the bug in the safari, where its NOT updating UI on remove, however it receives changed value */}
+        <p key={totalPrice}>Total: $ {totalPrice}</p>
         <a onClick={handleCheckout}> Go to checkout </a>
       </div>
     </div>
-
+    
   )
 }
 

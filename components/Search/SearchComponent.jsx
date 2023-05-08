@@ -6,7 +6,7 @@ const SearchComponent = ({product}) => {
     const {image, title, price, slug} = product
 
     return(
-        <Link href={`/products/${slug.current}`} tabIndex='0' >
+        <Link href={`/products/${slug.current}`} tabIndex='0' className='search-product-link'>
             <div className='search-product'>
                 <img src={urlFor(image[0])} alt={title} />
 
